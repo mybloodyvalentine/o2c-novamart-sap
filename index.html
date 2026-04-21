@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NovaMart O2C Process | SAP SD + BTP</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="logo-mark">NM</div>
+    <div>
+      <div class="logo-name">NovaMart Global Retail Ltd.</div>
+      <div class="logo-sub">SAP S/4HANA · SD Module · BTP Enhanced</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="btp-badge">
+      <span class="dot live"></span>
+      SAP BTP Connected
+    </div>
+    <div class="user-info">
+      <span>Sayandip Maji</span>
+      <span class="role-tag">BTP Specialist</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO BANNER -->
+<section class="hero">
+  <div class="hero-title">Order-to-Cash Process</div>
+  <div class="hero-sub">End-to-End SAP SD Cycle · Integrated with SAP Business Technology Platform</div>
+  <div class="hero-stats">
+    <div class="stat-box">
+      <div class="stat-num" id="totalOrders">847</div>
+      <div class="stat-label">Total Orders</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" id="openOrders">23</div>
+      <div class="stat-label">Open Orders</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">₹ 42.6L</div>
+      <div class="stat-label">Revenue This Month</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">98.2%</div>
+      <div class="stat-label">On-Time Delivery</div>
+    </div>
+  </div>
+</section>
+
+<!-- O2C PIPELINE -->
+<section class="pipeline-section">
+  <div class="section-label">O2C PROCESS PIPELINE</div>
+  <div class="pipeline">
+    <div class="pipeline-step active" data-step="1" onclick="selectStep(1)">
+      <div class="step-icon">📋</div>
+      <div class="step-code">VA21</div>
+      <div class="step-name">Inquiry</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="pipeline-step" data-step="2" onclick="selectStep(2)">
+      <div class="step-icon">📄</div>
+      <div class="step-code">VA21/VA22</div>
+      <div class="step-name">Quotation</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="pipeline-step" data-step="3" onclick="selectStep(3)">
+      <div class="step-icon">🛒</div>
+      <div class="step-code">VA01</div>
+      <div class="step-name">Sales Order</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="pipeline-step" data-step="4" onclick="selectStep(4)">
+      <div class="step-icon">📦</div>
+      <div class="step-code">VL01N</div>
+      <div class="step-name">Delivery</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="pipeline-step" data-step="5" onclick="selectStep(5)">
+      <div class="step-icon">🚚</div>
+      <div class="step-code">VT01N</div>
+      <div class="step-name">Shipment</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="pipeline-step" data-step="6" onclick="selectStep(6)">
+      <div class="step-icon">🧾</div>
+      <div class="step-code">VF01</div>
+      <div class="step-name">Billing</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="pipeline-step" data-step="7" onclick="selectStep(7)">
+      <div class="step-icon">💰</div>
+      <div class="step-code">F-28</div>
+      <div class="step-name">Payment</div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL PANEL -->
+<section class="detail-section">
+  <div class="detail-panel" id="detailPanel">
+    <!-- Filled by JS -->
+  </div>
+  <div class="btp-panel">
+    <div class="btp-header">
+      <span class="btp-logo">⚡</span>
+      <span>SAP BTP Integration Layer</span>
+    </div>
+    <div class="btp-services" id="btpServices">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- LIVE ORDER SIMULATOR -->
+<section class="simulator-section">
+  <div class="section-label">LIVE ORDER SIMULATOR</div>
+  <div class="simulator-grid">
+    <div class="sim-form">
+      <div class="form-title">Create New Sales Order</div>
+      <div class="form-group">
+        <label>Customer ID</label>
+        <input type="text" id="custId" placeholder="e.g. CUST-1042" />
+      </div>
+      <div class="form-group">
+        <label>Material</label>
+        <select id="material">
+          <option>MAT-ELEC-001 — 4K Smart TV (Samsung)</option>
+          <option>MAT-APPL-002 — Refrigerator (LG)</option>
+          <option>MAT-MOB-003 — iPhone 15 Pro</option>
+          <option>MAT-FURN-004 — Ergonomic Chair</option>
+          <option>MAT-GROC-005 — Bulk Grocery Pack</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" id="qty" placeholder="e.g. 5" min="1" />
+      </div>
+      <div class="form-group">
+        <label>Sales Organization</label>
+        <select id="salesOrg">
+          <option>1000 — NovaMart India (Mumbai)</option>
+          <option>2000 — NovaMart India (Delhi)</option>
+          <option>3000 — NovaMart India (Bangalore)</option>
+        </select>
+      </div>
+      <button class="btn-primary" onclick="createOrder()">Create Sales Order (VA01)</button>
+    </div>
+    <div class="order-log">
+      <div class="form-title">Order Log — SAP System Output</div>
+      <div class="log-area" id="logArea">
+        <div class="log-line system">[ SYSTEM ] SAP S/4HANA 2023 — NovaMart Instance</div>
+        <div class="log-line system">[ BTP ] Integration Suite active — Monitoring enabled</div>
+        <div class="log-line info">Awaiting order creation...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORG STRUCTURE -->
+<section class="org-section">
+  <div class="section-label">SAP ORGANIZATIONAL STRUCTURE — NOVAMART</div>
+  <div class="org-grid">
+    <div class="org-card top">
+      <div class="org-icon">🏢</div>
+      <div class="org-label">Company Code</div>
+      <div class="org-value">NM01</div>
+      <div class="org-desc">NovaMart Global Retail Ltd.</div>
+    </div>
+    <div class="org-card">
+      <div class="org-icon">🏬</div>
+      <div class="org-label">Sales Organisation</div>
+      <div class="org-value">1000 / 2000 / 3000</div>
+      <div class="org-desc">Mumbai · Delhi · Bangalore</div>
+    </div>
+    <div class="org-card">
+      <div class="org-icon">📡</div>
+      <div class="org-label">Distribution Channel</div>
+      <div class="org-value">10 · 20 · 30</div>
+      <div class="org-desc">Retail · Wholesale · Online</div>
+    </div>
+    <div class="org-card">
+      <div class="org-icon">🏷️</div>
+      <div class="org-label">Division</div>
+      <div class="org-value">01 · 02 · 03</div>
+      <div class="org-desc">Electronics · Appliances · Grocery</div>
+    </div>
+    <div class="org-card">
+      <div class="org-icon">🏭</div>
+      <div class="org-label">Plant</div>
+      <div class="org-value">NM10 · NM20</div>
+      <div class="org-desc">Mumbai WH · Delhi WH</div>
+    </div>
+    <div class="org-card">
+      <div class="org-icon">📦</div>
+      <div class="org-label">Storage Location</div>
+      <div class="org-value">SL01 · SL02</div>
+      <div class="org-desc">Main Store · Overflow</div>
+    </div>
+  </div>
+</section>
+
+<!-- BTP ARCHITECTURE -->
+<section class="arch-section">
+  <div class="section-label">SAP BTP ARCHITECTURE — HOW IT EXTENDS O2C</div>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <div class="arch-num">01</div>
+      <div class="arch-title">Integration Suite</div>
+      <div class="arch-body">Connects external CRM (Salesforce/HubSpot) with SAP SD. Customer inquiries flow directly into SAP via pre-built iFlows — eliminating manual data entry at the Inquiry & Quotation stage.</div>
+      <div class="arch-tag">iFlow · CPI · API Management</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-num">02</div>
+      <div class="arch-title">SAP Build Process Automation</div>
+      <div class="arch-body">Automates credit limit checks and manager approval workflows for high-value Sales Orders. Workflow triggers via BTP when order value exceeds ₹5L — routes to CFO inbox automatically.</div>
+      <div class="arch-tag">Workflow · RPA · Decision Tables</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-num">03</div>
+      <div class="arch-title">SAP Analytics Cloud</div>
+      <div class="arch-body">Embedded analytics on O2C KPIs — Days Sales Outstanding (DSO), Order Fulfillment Rate, Revenue by Region. Live dashboards for management without SAP GUI access.</div>
+      <div class="arch-tag">SAC · Live Connection · Stories</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-num">04</div>
+      <div class="arch-title">Event Mesh</div>
+      <div class="arch-body">Real-time event streaming — when a delivery is goods-issued in SAP (VL02N PGI), an event fires to BTP Event Mesh, triggering email/SMS to customer with tracking details.</div>
+      <div class="arch-tag">Event-Driven · Pub/Sub · Webhooks</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>NovaMart Global Retail Ltd. · SAP S/4HANA O2C Process with BTP Integration</div>
+  <div>Capstone Project · Sayandip Maji · Roll No: 23052424 · KIIT · B.Tech CSE 2023–2027</div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
